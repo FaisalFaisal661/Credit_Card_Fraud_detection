@@ -2,8 +2,8 @@
 # Credit Card Fraud Detection 
 
 A Data Science Project on the title "Credit Card Fraud Detection"using Logestic Regression and Random Forest Classifier
-both ML models are used in different notebook file
-Streamlit webApp to describe the Data analysis
+both ML models are used in different notebook file.
+Streamlit webApp to describe the Data analysis is also available in this project
 
 
 
