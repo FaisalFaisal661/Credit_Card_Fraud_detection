@@ -17,7 +17,7 @@ st.title("""Credit Card Fraud Detection""")
 
 # reading CSV file from source
 df =st.cache(pd.read_csv)("creditcard.csv")
-df = df.sample(frac = 0.1, random_state = 48)
+
 
 
 #exploring data
@@ -38,7 +38,7 @@ fraud_transc_percentage = (len(fraud)/len(df))*100
 
 #Printing Fraud vs Legit Transation
 if st.sidebar.checkbox("Statistics of Fraud and Legit Transations"):
-    st.write("** Total Transations **")
+   
     st.write("Total Transactions: ", len(df))
     st.write("Valid Transactions: ", len(valid))
     st.write("Fraud Transactions: ", len(fraud))
@@ -152,13 +152,13 @@ def compute_performance(model, X_train, Y_train, X_test, Y_test):
    
   
    
-   accuracy = accuracy_score(Y_test, Y_pred)
+   accuracy = model.score(X_test, Y_pred)
    'Accuracy: ', accuracy
    
    "Confusion Matrix: "
-   cm = confusion_matrix(Y_test, Y_pred)
+   cm = confusion_matrix(Y_test, pred)
    
-   group_names = ['False Neg','False Pos','True Neg','True Pos']
+   group_names = ['True Neg','True Pos','False Neg','False Pos']
    group_counts = ["{0:0.0f}".format(value) for value in
                 cm.flatten()]
    group_percentages = ['{0:.2%}'.format(value) for value in
@@ -167,20 +167,17 @@ def compute_performance(model, X_train, Y_train, X_test, Y_test):
           zip(group_names,group_counts,group_percentages)]
    labels = np.asarray(labels).reshape(2,2)
    
-   fig = plt.figure()
+   fig = plt.figure(figsize=(12,9))
    sns.heatmap(cm, annot=labels, fmt="", cmap='Reds')
    st.pyplot(fig)
 
 
 if st.sidebar.checkbox("Run a Random Forest classifier model"):
     st.title("The Conussion Matrics ")
-    classifier =model
-    imbalance_rect = 'no Retifier'
     compute_performance(model, X_train, Y_train, X_test, Y_test)
-    cnf_matrix = confusion_matrix(Y_test, pred)
-    plot_cm(cnf_matrix , classes=[0,1])
+    
 
     st.write("""
-    False negetive Values Shows the completly Valid or Legit Transations
-    True Positive Values Show the complete Fraud Transations
+    True Positive Values Shows the completly Valid or Legit Transations
+   Fasle Negetive Values Show the complete Fraud Transations
     """)
