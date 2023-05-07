@@ -14,6 +14,7 @@ Streamlit webApp to describe the Data analysis is also available in this project
 
 
 ## Requirments
+Its Recommended to have anaconda installed in your device or else some packages wont work in some devices 
 
 To deploy this project run we would need jupyter Notebook
 
